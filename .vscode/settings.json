@@ -1,0 +1,32 @@
+{
+  "sqltools.connections": [
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "My Local PostgreSQL",
+      "database": "himsfacility_00005_14_oct",
+      "username": "postgres",
+      "password": "postgres"
+    },
+    {
+      "dbDriver": "mssqlnodev8",
+      "connectionMethod": "Integrated",
+      "connectionTimeout": 15,
+      "sidePanelOptions": {
+        "inaccessibleDatabase": true,
+        "inaccessibleSchema": true
+      },
+      "previewLimit": 50,
+      "odbcDriver": "SQL Server",
+      "port": 1433,
+      "msnodesqlv8Options": {},
+      "driver": "SQL Server/Azure Community Ver",
+      "server": "EDWARD-PC",
+      "name": "EDWARD-PC"
+    }
+  ],
+  "liveServer.settings.port": 5502
+}

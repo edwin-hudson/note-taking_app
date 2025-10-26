@@ -6,26 +6,46 @@ function loadNotes() {
     return savedNotes ? JSON.parse(savedNotes) : []
 }
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+function formatDateTime(d = new Date()) {
+    const month = months[d.getMonth()]
+    const day = d.getDate()
+    const year = d.getFullYear()
+    let hour = d.getHours()
+    const minutes = String(d.getMinutes()).padStart(2, '0')
+    const ampm = hour >= 12 ? 'PM' : 'AM'
+    hour = hour % 12
+    if (hour === 0) hour = 12
+    return `${day} ${month} ${year}, ${hour}:${minutes} ${ampm}`
+}
+
 function saveNote(event) {
     event.preventDefault()
 
     const title = document.getElementById('noteTitle').value.trim();
     const content = document.getElementById('noteContent').value.trim();
+    // compute date/time at the moment of saving
+    const newDate = formatDateTime();
 
     if(editingNoteId) {
         // Updating existing note
         const noteIndex = notes.findIndex(note => note.id === editingNoteId)
-        notes[noteIndex] = {
-            ...notes[noteIndex],
-            title: title,
-            content: content
+        if (noteIndex !== -1) {
+            notes[noteIndex] = {
+                ...notes[noteIndex],
+                title: title,
+                content: content,
+                date: newDate // optionally update timestamp on edit
+            }
         }
     }else{
-        // Ad new note
+        // Add new note
         notes.unshift({
             id: generateId(),
             title: title,
-            content: content
+            content: content,
+            date: newDate
         }) 
     }
 
@@ -43,7 +63,7 @@ function saveNotes() {
 }
 
 function deleteNote(noteId) {
-    notes = notes.filter(note => note.id != noteId)
+    notes = notes.filter(note => note.id !== noteId)
     saveNotes()
     renderNotes()
 }
@@ -67,6 +87,7 @@ function renderNotes() {
         <div class="note-card">
             <h3 class="note-title">${note.title}</h3>
             <p class="note-content">${note.content}</p>
+            <p class="date-content">${note.date}</p>
             <div class="note-actions">
                 <button class="edit-btn" onclick="openNoteDialog('${note.id}')" title="Edit Note">
                     <svg height="20px" viewBox="0 -960 960 960" width="20px" fill="#191b23">
