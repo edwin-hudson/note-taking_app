@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  /> -->
+    <style>
+        @font-face {
+            font-family: 'Poppins';
+            src: url(assets/font/poppins/Poppins-Regular.ttf);
+        }
+    </style>
+    <link rel="stylesheet" href="assets/fontawesome-free-6.7.2-web/css/all.min.css"  />
     <title>Quick Notes | Hudson</title>
 </head>
 <body>
 
     <header>
         <h1>Quick Notes</h1>
-        <div>
-            <button class="add-note-btn" onclick="openNoteDialog()">+ Add Note</button>
-            <button id="themeToggleBtn" class="theme-toggle-btn">🌙</button>
+        <div class="head-btns">
+            <button class="add-note-btn" onclick="openNoteDialog()"> <i class="fa-regular fa-plus"></i> Add Note</button>
+            <button id="themeToggleBtn" class="theme-toggle-btn fa-solid fa-moon"></button>
         </div>
 
     </header>
@@ -28,7 +33,7 @@
         <div class="dialog-content">
             <div class="dialog-header">
                 <h2 class="dialog-title" id="dialogTitle">Add New Note</h2>
-                <button class="close-btn" onclick="closeNoteDialog()">x</button>
+                <button class="close-btn" onclick="closeNoteDialog()"><i class="fa-regular fa-x"></i></button>
             </div>
 
             <form action="" id="noteForm">
@@ -39,7 +44,7 @@
 
                 <div class="form-group">
                     <label for="noteContent" class="form-label">Content</label>
-                    <textarea name="" id="noteContent" class="form-textarea" placeholder="Write your note here..." required></textarea>
+                    <textarea name="" id="noteContent" class="form-textarea" placeholder="Write your notes here..." required></textarea>
                 </div>
 
                 <div class="dialog-actions">
